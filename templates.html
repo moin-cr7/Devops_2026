@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free HTML CSS Templates | Tooplate</title>
+    <meta name="description" content="Download 80+ free HTML CSS website templates from Tooplate. Responsive, mobile-ready designs for portfolios, businesses, and creative projects. No login required.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0A0A0A;
+            --concrete: #2C2C2C;
+            --steel: #404040;
+            --industrial-red: #E63946;
+            --industrial-orange: #FF6B35;
+            --light-gray: #A8A8A8;
+            --white: #F5F5F5;
+            --border: #1A1A1A;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Bebas Neue', 'Impact', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(180deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.8) 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--industrial-red);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Work Sans', sans-serif;
+        }
+
+        .logo svg {
+            width: 35px;
+            height: 35px;
+        }
+
+        .logo:hover {
+            color: var(--industrial-orange);
+            transform: translateY(-2px);
+        }
+
+        .logo:hover svg path,
+        .logo:hover svg rect {
+            fill: var(--industrial-orange);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            padding: 0.75rem 1.5rem;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--white);
+            background: var(--industrial-red);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero / About Section */
+        .hero-about {
+            padding: 10rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px);
+            pointer-events: none;
+        }
+
+        .hero-about::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--industrial-red), transparent);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            line-height: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text h1 span {
+            color: var(--industrial-red);
+        }
+
+        .hero-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--light-gray);
+            margin-bottom: 1rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat-number {
+            display: block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--industrial-red);
+            letter-spacing: 0.02em;
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-top: 0.25rem;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 380px;
+        }
+
+        .hero-code-block {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--concrete);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            overflow: hidden;
+            clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+        }
+
+        .hero-code-block::before {
+            content: '< / >';
+            position: absolute;
+            bottom: 1.5rem;
+            right: 2rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5rem;
+            color: var(--industrial-red);
+            opacity: 0.08;
+            letter-spacing: 0.05em;
+        }
+
+        .code-header {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .code-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--steel);
+        }
+
+        .code-dot:first-child { background: var(--industrial-red); }
+        .code-dot:nth-child(2) { background: var(--industrial-orange); }
+
+        .code-line {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            margin-bottom: 0.6rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            animation: codeFade 0.4s ease forwards;
+        }
+
+        .code-line:nth-child(2) { animation-delay: 0.1s; }
+        .code-line:nth-child(3) { animation-delay: 0.2s; }
+        .code-line:nth-child(4) { animation-delay: 0.3s; }
+        .code-line:nth-child(5) { animation-delay: 0.4s; }
+        .code-line:nth-child(6) { animation-delay: 0.5s; }
+        .code-line:nth-child(7) { animation-delay: 0.6s; }
+        .code-line:nth-child(8) { animation-delay: 0.7s; }
+        .code-line:nth-child(9) { animation-delay: 0.8s; }
+
+        .code-tag { color: var(--industrial-red); }
+        .code-attr { color: var(--industrial-orange); }
+        .code-val { color: #7EC8E3; }
+        .code-comment { color: var(--steel); font-style: italic; }
+
+        @keyframes codeFade {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Templates Section */
+        .templates-section {
+            padding: 5rem 0 6rem;
+            background: var(--concrete);
+            position: relative;
+        }
+
+        .templates-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--industrial-red), transparent);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-header h2 span {
+            color: var(--industrial-red);
+        }
+
+        .section-header p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--light-gray);
+            font-size: 1rem;
+        }
+
+        /* Template Cards */
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .template-card {
+            background: var(--black);
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .template-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background: var(--industrial-red);
+            transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            z-index: 2;
+        }
+
+        .template-card:hover::before {
+            height: 100%;
+        }
+
+        .template-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--industrial-red);
+            box-shadow: 0 20px 50px rgba(230, 57, 70, 0.12);
+        }
+
+        .template-thumb {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .template-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .template-card:hover .template-thumb img {
+            transform: scale(1.05);
+        }
+
+        .template-thumb-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(10,10,10,0.5) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .template-card:hover .template-thumb-overlay {
+            opacity: 1;
+        }
+
+        .template-number {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            background: var(--industrial-red);
+            color: var(--white);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.85rem;
+            padding: 0.2rem 0.6rem;
+            letter-spacing: 0.08em;
+            z-index: 1;
+        }
+
+        .template-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .template-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            letter-spacing: 0.04em;
+            transition: color 0.3s ease;
+        }
+
+        .template-card:hover .template-info h3 {
+            color: var(--industrial-red);
+        }
+
+        .template-info p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--light-gray);
+            margin-bottom: 1.25rem;
+            flex: 1;
+        }
+
+        .template-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.25rem;
+        }
+
+        .template-tag {
+            background: var(--steel);
+            padding: 0.2rem 0.6rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--light-gray);
+            transition: all 0.3s ease;
+        }
+
+        .template-card:hover .template-tag {
+            background: rgba(230, 57, 70, 0.15);
+            color: var(--white);
+        }
+
+        .template-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: auto;
+        }
+
+        .btn-preview {
+            flex: 1;
+            padding: 0.7rem 1rem;
+            text-align: center;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            border: 2px solid var(--steel);
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .btn-preview:hover {
+            border-color: var(--industrial-red);
+            background: var(--industrial-red);
+        }
+
+        .btn-download {
+            flex: 1;
+            padding: 0.7rem 1rem;
+            text-align: center;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            background: var(--industrial-red);
+            color: var(--white);
+            border: 2px solid var(--industrial-red);
+            transition: all 0.3s ease;
+        }
+
+        .btn-download:hover {
+            background: transparent;
+            color: var(--industrial-red);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(230,57,70,0.8) 0%, rgba(255,107,53,0.7) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.05) 49%, rgba(255,255,255,0.05) 51%, transparent 51%),
+                linear-gradient(-45deg, transparent 49%, rgba(255,255,255,0.05) 49%, rgba(255,255,255,0.05) 51%, transparent 51%);
+            background-size: 100px 100px;
+            pointer-events: none;
+        }
+
+        .cta::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.5) 100%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: var(--white);
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-all-templates {
+            display: inline-block;
+            background: var(--white);
+            color: var(--industrial-red);
+            padding: 1rem 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-size: 0.9rem;
+            border: 2px solid var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .btn-all-templates:hover {
+            background: transparent;
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-credits {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .footer-credits p {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        .footer-credits a {
+            color: var(--industrial-red);
+            transition: color 0.3s ease;
+        }
+
+        .footer-credits a:hover {
+            color: var(--industrial-orange);
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-nav a {
+            color: var(--light-gray);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: var(--industrial-red);
+        }
+
+        /* Loading Animation */
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--industrial-red);
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: loading 2s ease-out forwards;
+            z-index: 10000;
+        }
+
+        @keyframes loading {
+            to { transform: scaleX(1); }
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .templates-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .hero-visual {
+                height: 280px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--black);
+                flex-direction: column;
+                padding: 8rem 0;
+				justify-content: center;
+                border-bottom: 2px solid var(--industrial-red);
+                z-index: 999;
+                overflow-y: auto;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 1rem 2rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links a:hover {
+                background: var(--industrial-red);
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .templates-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-about {
+                padding: 8rem 0 3rem;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .footer-credits {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-bar"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="https://www.tooplate.com" class="logo">
+                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 10 L5 30 L15 30 L15 20 L25 20 L25 30 L35 30 L35 10 L25 10 L25 15 L15 15 L15 10 Z" fill="#E63946"/>
+                    <rect x="18" y="5" width="4" height="30" fill="#FF6B35" opacity="0.8"/>
+                    <rect x="5" y="18" width="30" height="4" fill="#FF6B35" opacity="0.8"/>
+                </svg>
+                TOOPLATE
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#templates" class="active">Templates</a></li>
+                <li><a href="https://www.tooplate.com/free-templates">All Templates</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero / About Section -->
+    <section class="hero-about" id="about">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1>Free HTML<br><span>Templates</span></h1>
+                    <p>Tooplate offers 80+ free, responsive HTML CSS website templates built for startups, portfolios, businesses, and creative projects. Every template is clean, mobile-ready, and easy to customize with any code editor.</p>
+                    <p>No login required. No hidden fees. Just download, edit, and launch your website. All templates are free for personal and commercial use.</p>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <span class="hero-stat-number">80+</span>
+                            <span class="hero-stat-label">Templates</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number">Free</span>
+                            <span class="hero-stat-label">Download</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number">100%</span>
+                            <span class="hero-stat-label">Responsive</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-code-block">
+                        <div class="code-header">
+                            <div class="code-dot"></div>
+                            <div class="code-dot"></div>
+                            <div class="code-dot"></div>
+                        </div>
+                        <div class="code-line"><span class="code-comment">&lt;!-- Free HTML Template --&gt;</span></div>
+                        <div class="code-line"><span class="code-tag">&lt;html</span> <span class="code-attr">lang</span>=<span class="code-val">"en"</span><span class="code-tag">&gt;</span></div>
+                        <div class="code-line">&nbsp;&nbsp;<span class="code-tag">&lt;head&gt;</span></div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-tag">&lt;link</span> <span class="code-attr">rel</span>=<span class="code-val">"stylesheet"</span></div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-attr">href</span>=<span class="code-val">"style.css"</span><span class="code-tag">&gt;</span></div>
+                        <div class="code-line">&nbsp;&nbsp;<span class="code-tag">&lt;/head&gt;</span></div>
+                        <div class="code-line">&nbsp;&nbsp;<span class="code-tag">&lt;body&gt;</span></div>
+                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">&lt;!-- Your content --&gt;</span></div>
+                        <div class="code-line">&nbsp;&nbsp;<span class="code-tag">&lt;/body&gt;</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates Grid -->
+    <section class="templates-section" id="templates">
+        <div class="container">
+            <div class="section-header">
+                <h2>Latest <span>Templates</span></h2>
+                <p>Freshly designed HTML CSS templates ready for your next project.</p>
+            </div>
+
+            <div class="templates-grid">
+
+                <!-- Template 1: Poppy Studio -->
+                <div class="template-card reveal">
+                    <div class="template-thumb">
+                        <img src="https://www.tooplate.com/thumbnails/tooplate-2157-poppy-studio.jpg" alt="Poppy Studio HTML Template">
+                        <div class="template-thumb-overlay"></div>
+                        <span class="template-number">2157</span>
+                    </div>
+                    <div class="template-info">
+                        <h3>Poppy Studio</h3>
+                        <p>A mood board portfolio template designed for illustrators, brand designers, and creative professionals.</p>
+                        <div class="template-tags">
+                            <span class="template-tag">Portfolio</span>
+                            <span class="template-tag">Creative</span>
+                        </div>
+                        <div class="template-actions">
+                            <a href="https://www.tooplate.com/view/2157-poppy-studio" class="btn-preview" rel="nofollow">Preview</a>
+                            <a href="#tooplate-2157-poppy-studio" class="btn-download" rel="nofollow">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 2: Graphite Creative -->
+                <div class="template-card reveal">
+                    <div class="template-thumb">
+                        <img src="https://www.tooplate.com/thumbnails/tooplate-2156-graphite-creative.jpg" alt="Graphite Creative HTML Template">
+                        <div class="template-thumb-overlay"></div>
+                        <span class="template-number">2156</span>
+                    </div>
+                    <div class="template-info">
+                        <h3>Graphite Creative</h3>
+                        <p>A sleek, dark-themed template for creative agencies, design studios, and digital professionals.</p>
+                        <div class="template-tags">
+                            <span class="template-tag">Agency</span>
+                            <span class="template-tag">Dark</span>
+                        </div>
+                        <div class="template-actions">
+                            <a href="https://www.tooplate.com/view/2156-graphite-creative" class="btn-preview" rel="nofollow">Preview</a>
+                            <a href="#tooplate-2156-graphite-creative" class="btn-download" rel="nofollow">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 3: Modern Musician -->
+                <div class="template-card reveal">
+                    <div class="template-thumb">
+                        <img src="https://www.tooplate.com/thumbnails/tooplate-2155-modern-musician.jpg" alt="Modern Musician HTML Template">
+                        <div class="template-thumb-overlay"></div>
+                        <span class="template-number">2155</span>
+                    </div>
+                    <div class="template-info">
+                        <h3>Modern Musician</h3>
+                        <p>A clean, minimal template for music creators, educators, and freelance artists.</p>
+                        <div class="template-tags">
+                            <span class="template-tag">Music</span>
+                            <span class="template-tag">Minimal</span>
+                        </div>
+                        <div class="template-actions">
+                            <a href="https://www.tooplate.com/view/2155-modern-musician" class="btn-preview" rel="nofollow">Preview</a>
+                            <a href="#tooplate-2155-modern-musician" class="btn-download" rel="nofollow">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 4: Split Screen Portfolio -->
+                <div class="template-card reveal">
+                    <div class="template-thumb">
+                        <img src="https://www.tooplate.com/thumbnails/tooplate-2154-split-portfolio.jpg" alt="Split Screen Portfolio HTML Template">
+                        <div class="template-thumb-overlay"></div>
+                        <span class="template-number">2154</span>
+                    </div>
+                    <div class="template-info">
+                        <h3>Split Screen Portfolio</h3>
+                        <p>A modern, fully responsive template that brings editorial magazine aesthetics to your online portfolio.</p>
+                        <div class="template-tags">
+                            <span class="template-tag">Portfolio</span>
+                            <span class="template-tag">Editorial</span>
+                        </div>
+                        <div class="template-actions">
+                            <a href="https://www.tooplate.com/view/2154-split-portfolio" class="btn-preview" rel="nofollow">Preview</a>
+                            <a href="#tooplate-2154-split-portfolio" class="btn-download" rel="nofollow">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 5: Fireworks Composer -->
+                <div class="template-card reveal">
+                    <div class="template-thumb">
+                        <img src="https://www.tooplate.com/thumbnails/tooplate-2153-fireworks-composer.jpg" alt="Fireworks Composer HTML Template">
+                        <div class="template-thumb-overlay"></div>
+                        <span class="template-number">2153</span>
+                    </div>
+                    <div class="template-info">
+                        <h3>Fireworks Composer</h3>
+                        <p>An interactive New Year celebration template with canvas-based particle fireworks and glassmorphism controls.</p>
+                        <div class="template-tags">
+                            <span class="template-tag">Interactive</span>
+                            <span class="template-tag">Canvas</span>
+                        </div>
+                        <div class="template-actions">
+                            <a href="https://www.tooplate.com/view/2153-fireworks-composer" class="btn-preview" rel="nofollow">Preview</a>
+                            <a href="#tooplate-2153-fireworks-composer" class="btn-download" rel="nofollow">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 6: Event Invitation -->
+                <div class="template-card reveal">
+                    <div class="template-thumb">
+                        <img src="https://www.tooplate.com/thumbnails/tooplate-2152-event-invitation.jpg" alt="Event Invitation HTML Template">
+                        <div class="template-thumb-overlay"></div>
+                        <span class="template-number">2152</span>
+                    </div>
+                    <div class="template-info">
+                        <h3>Event Invitation</h3>
+                        <p>A modern, minimalist template for corporate events and professional gatherings with RSVP form and countdown timer.</p>
+                        <div class="template-tags">
+                            <span class="template-tag">Event</span>
+                            <span class="template-tag">RSVP</span>
+                        </div>
+                        <div class="template-actions">
+                            <a href="https://www.tooplate.com/view/2152-event-invitation" class="btn-preview" rel="nofollow">Preview</a>
+                            <a href="#tooplate-2152-event-invitation" class="btn-download" rel="nofollow">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Explore All 80+ Templates</h2>
+                <p>Browse the complete collection of free, responsive HTML CSS templates for every type of website project.</p>
+                <a href="https://www.tooplate.com/free-templates" class="btn-all-templates" rel="nofollow">View All Templates</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="footer-credits">
+                    <p>&copy; 2026 <a href="https://www.tooplate.com" rel="nofollow">Tooplate</a>. Free HTML CSS Templates.</p>
+                </div>
+                <div class="footer-nav">
+                    <a href="https://www.tooplate.com/free-templates" rel="nofollow">Templates</a>
+                    <a href="https://www.tooplate.com/about" rel="nofollow">About</a>
+                    <a href="https://www.tooplate.com/privacy" rel="nofollow">Privacy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // Navigation background on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                nav.style.background = 'linear-gradient(180deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.8) 100%)';
+            }
+        });
+
+        // IntersectionObserver scroll reveal with setTimeout fallback
+        const revealElements = document.querySelectorAll('.reveal');
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            revealElements.forEach(el => observer.observe(el));
+        }
+
+        // Fallback: reveal all after 3 seconds (for iframe previews)
+        setTimeout(() => {
+            revealElements.forEach(el => el.classList.add('visible'));
+        }, 3000);
+
+        // Remove loading bar
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.querySelector('.loading-bar').style.display = 'none';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
