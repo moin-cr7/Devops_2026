@@ -51,3 +51,21 @@ cd Devops_2026
 Paste the output of:
 ssh -T git@github.com
 once you've added the key.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Terraform Step-by-Step Guide
+
+cd ~/Devops_2026/terraform
+
+git pull origin master
+
+terraform init
+
+terraform fmt
+
+terraform validate
+
+terraform plan
+
+terraform apply
