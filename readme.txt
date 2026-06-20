@@ -1,191 +1,230 @@
-# DevOps 2026 - AWS + Terraform + Ansible + Docker + GitHub Actions
+# DevOps 2026 Project
 
-## Project Objective
-
-Build a complete DevOps pipeline:
-
-GitHub → GitHub Actions → Terraform → AWS EC2 → Ansible → Docker → Application Deployment
+## AWS + Terraform + Ansible + Docker + GitHub Actions
 
 ---
 
-# Phase 1: AWS Setup
+# Project Objective
 
-## Step 1: Create AWS Account
+Build a complete DevOps CI/CD pipeline from scratch using:
+
+- AWS
+- Terraform
+- Ansible
+- Docker
+- GitHub Actions
+
+Final Architecture:
+
+```text
+Developer
+    │
+    ▼
+GitHub Repository
+    │
+    ▼
+GitHub Actions
+    │
+    ▼
+Terraform
+    │
+    ▼
+AWS Infrastructure
+    │
+    ▼
+Ansible
+    │
+    ▼
+Docker
+    │
+    ▼
+Application Deployment
+```
+
+---
+
+# Skills Covered
+
+- Linux Administration
+- Git & GitHub
+- AWS IAM
+- AWS EC2
+- AWS Security Groups
+- AWS CLI
+- Terraform
+- Infrastructure as Code (IaC)
+- Ansible
+- Docker
+- CI/CD
+- GitHub Actions
+
+---
+
+# Phase 1 - AWS Account Setup
+
+## Create AWS Account
 
 - Create AWS Account
-- Enable MFA for Root User
+- Enable MFA on Root User
 - Never use Root User for daily activities
 
 ### Learning
 
-Root User = Account Owner
-
-IAM User = Daily Administration
-
-IAM Role = Temporary Permissions
+```text
+Root User  = Account Owner
+IAM User   = Daily Administration
+IAM Role   = Temporary Permissions
+```
 
 ---
 
-## Step 2: Create IAM User
+# Phase 2 - Create IAM User
 
-### User Details
+## IAM User
 
-Username:
-
+```text
 devops-admin
+```
 
-### Permissions
+## Permissions
 
+```text
 AdministratorAccess
+```
 
 ### Why?
 
-Terraform and AWS CLI require permissions to create and manage AWS resources.
+Terraform and AWS CLI require permissions to create AWS resources.
 
 ---
 
-# Phase 2: Create Control Server
+# Phase 3 - Create Control Server
 
 ## Purpose
 
-This EC2 instance will act as the central server from which:
+This EC2 Instance acts as:
 
-- Terraform will run
-- Ansible will run
-- Git commands will run
-- AWS CLI commands will run
+- Terraform Server
+- Ansible Server
+- Git Server
+- AWS CLI Server
 
 ### Configuration
 
-Operating System: Ubuntu
-
-Instance Type: t3.micro
-
-Region: ap-south-1 (Mumbai)
-
-### IAM Role
-
-Attach:
-
-DevOpsControlServerRole
-
----
-
-# Phase 3: Connect to EC2
-
-## SSH Command
-
-```bash
-ssh -i key.pem ubuntu@PUBLIC_IP
+```text
+OS            : Ubuntu Server
+Instance Type : t3.micro
+Region        : ap-south-1
 ```
 
-### Learning
+### Important
 
-SSH is used to securely access Linux servers remotely.
+Attach IAM Role:
+
+```text
+DevOpsControlServerRole
+```
+
+Enable:
+
+```text
+Termination Protection
+```
 
 ---
 
-# Phase 4: Update Linux Server
+# Phase 4 - Connect to Control Server
 
-## Commands
+```bash
+ssh -i devops-key.pem ubuntu@PUBLIC_IP
+```
+
+Example:
+
+```bash
+ssh -i devops-key.pem ubuntu@13.233.xx.xx
+```
+
+---
+
+# Phase 5 - Update Linux
 
 ```bash
 sudo apt update
 sudo apt upgrade -y
 ```
 
-### Why?
-
-Ensures all packages are updated before installing software.
-
 ---
 
-# Phase 5: Install Git
+# Phase 6 - Install Git
 
-## Installation
+Install:
 
 ```bash
 sudo apt install git -y
 ```
 
-## Verify
+Verify:
 
 ```bash
 git --version
 ```
 
-### Why?
-
-Git is used for source code management and version control.
-
 ---
 
-# Phase 6: Install AWS CLI
+# Phase 7 - Install AWS CLI
 
-## Installation
+Install:
 
 ```bash
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-
-sudo apt install unzip -y
-
-unzip awscliv2.zip
-
-sudo ./aws/install
+sudo apt install awscli -y
 ```
 
-## Verify
+Verify:
 
 ```bash
 aws --version
 ```
 
-### Why?
-
-AWS CLI allows AWS operations from the command line.
-
-Examples:
-
-```bash
-aws sts get-caller-identity
-aws ec2 describe-instances
-aws s3 ls
-```
-
----
-
-# Phase 7: Verify IAM Role
-
-## Command
+Verify AWS Access:
 
 ```bash
 aws sts get-caller-identity
 ```
 
-### Expected Result
+---
 
-Shows:
+# Common Issue
 
-- AWS Account ID
-- IAM Role ARN
+## Error
 
-### Learning
+```text
+Unable to locate credentials
+```
 
-This confirms EC2 can communicate with AWS securely.
+## Solution
+
+### Option 1
+
+Attach IAM Role
+
+```text
+DevOpsControlServerRole
+```
+
+### Option 2
+
+Configure manually:
+
+```bash
+aws configure
+```
 
 ---
 
-# Phase 8: Install Terraform
+# Phase 8 - Install Terraform
 
-## Why Terraform?
-
-Terraform is Infrastructure as Code (IaC).
-
-Instead of manually creating resources in AWS Console, we define them in code.
-
----
-
-## Installation
+Install Terraform:
 
 ```bash
 wget -O- https://apt.releases.hashicorp.com/gpg | \
@@ -201,7 +240,7 @@ sudo apt update
 sudo apt install terraform -y
 ```
 
-## Verify
+Verify:
 
 ```bash
 terraform version
@@ -209,142 +248,235 @@ terraform version
 
 ---
 
-# Phase 9: Clone GitHub Repository
+# Phase 9 - Install Ansible
 
-## Clone Repository
+Install:
+
+```bash
+sudo apt update
+
+sudo apt install ansible -y
+```
+
+Verify:
+
+```bash
+ansible --version
+```
+
+---
+
+# Phase 10 - Configure GitHub SSH
+
+Generate SSH Key:
+
+```bash
+ssh-keygen -t ed25519 -C "github"
+```
+
+Display Public Key:
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+Add key to GitHub:
+
+```text
+GitHub
+ ↓
+Settings
+ ↓
+SSH and GPG Keys
+ ↓
+New SSH Key
+```
+
+Test:
+
+```bash
+ssh -T git@github.com
+```
+
+Clone Repository:
 
 ```bash
 git clone git@github.com:moin-cr7/Devops_2026.git
 ```
 
-## Enter Repository
-
-```bash
-cd Devops_2026
-```
-
 ---
 
-# Phase 10: Create Terraform Configuration
-
-## Directory Structure
+# Project Structure
 
 ```text
-terraform/
-├── main.tf
-├── variables.tf
-├── outputs.tf
-└── .terraform.lock.hcl
+Devops_2026/
+│
+├── terraform/
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+│
+├── ansible/
+│   ├── inventory
+│   └── playbooks/
+│
+├── app/
+│
+├── .github/
+│   └── workflows/
+│
+└── README.md
 ```
-
-### Purpose
-
-main.tf
-
-Infrastructure definition
-
-variables.tf
-
-Input variables
-
-outputs.tf
-
-Display values after deployment
 
 ---
 
-# Phase 11: Terraform Workflow
+# Phase 11 - Create SSH Key for Terraform EC2
 
-## Initialize Terraform
+Generate:
+
+```bash
+ssh-keygen -t rsa -b 4096 \
+-f ~/.ssh/terraform-webserver-key \
+-N ""
+```
+
+Files Created:
+
+```text
+~/.ssh/terraform-webserver-key
+~/.ssh/terraform-webserver-key.pub
+```
+
+### Learning
+
+```text
+Private Key → Used for SSH Login
+Public Key  → Uploaded to AWS
+```
+
+---
+
+# Phase 12 - Terraform Configuration
+
+## main.tf
+
+```hcl
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "~> 6.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = "ap-south-1"
+}
+
+resource "aws_key_pair" "webserver_key" {
+  key_name   = "terraform-webserver-key"
+  public_key = file("~/.ssh/terraform-webserver-key.pub")
+}
+
+resource "aws_security_group" "ssh_access" {
+  name = "terraform-ssh-access"
+
+  ingress {
+    from_port = 22
+    to_port   = 22
+    protocol  = "tcp"
+
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_instance" "webserver" {
+  ami           = "ami-0a524481113ca6b94"
+  instance_type = "t3.micro"
+
+  key_name = aws_key_pair.webserver_key.key_name
+
+  vpc_security_group_ids = [
+    aws_security_group.ssh_access.id
+  ]
+
+  tags = {
+    Name = "terraform-webserver"
+  }
+}
+```
+
+---
+
+# Phase 13 - Terraform Workflow
+
+Initialize:
 
 ```bash
 terraform init
 ```
 
-### Purpose
-
-Downloads AWS Provider and prepares Terraform.
-
----
-
-## Validate Configuration
+Validate:
 
 ```bash
 terraform validate
 ```
 
-### Purpose
-
-Checks Terraform syntax.
-
----
-
-## Review Changes
+Plan:
 
 ```bash
 terraform plan
 ```
 
-### Purpose
-
-Shows resources Terraform will create.
-
-No resources are created at this stage.
-
----
-
-## Create Infrastructure
+Apply:
 
 ```bash
 terraform apply
 ```
 
-Type:
+Destroy:
 
-```text
-yes
+```bash
+terraform destroy
 ```
-
-### Purpose
-
-Creates AWS resources.
 
 ---
 
-# Phase 12: Terraform State
+# Terraform State
 
-## What is terraform.tfstate?
-
-Terraform's memory file.
-
-Stores:
-
-- Instance IDs
-- Public IPs
-- Resource Metadata
-
-### Why Important?
-
-Terraform compares:
-
-Desired State = main.tf
-
-Current State = terraform.tfstate
-
-and decides what changes are required.
-
-### Never Commit
+Files:
 
 ```text
 terraform.tfstate
 terraform.tfstate.backup
 ```
 
+Purpose:
+
+Terraform memory file.
+
+Stores:
+
+- Resource IDs
+- Public IPs
+- Metadata
+
+Never commit these files.
+
 ---
 
-# Phase 13: Git Best Practices
+# .gitignore
 
-## Create .gitignore
+Create:
 
 ```gitignore
 .terraform/
@@ -353,148 +485,179 @@ terraform.tfstate.backup
 terraform.tfvars
 ```
 
-### Why?
-
-Prevents large files and sensitive data from being committed.
-
 ---
 
-## Git Workflow
+# Issue Faced
 
-Check status:
+## GitHub Push Failed
 
-```bash
-git status
+Error:
+
+```text
+terraform-provider-aws exceeds GitHub 100MB limit
 ```
 
-Add files:
-
-```bash
-git add .
-```
-
-Commit changes:
-
-```bash
-git commit -m "message"
-```
-
-Push to GitHub:
-
-```bash
-git push origin master
-```
-
-Pull latest changes:
-
-```bash
-git pull origin master
-```
-
----
-
-# Common Issues Faced
-
-## Problem
-
-GitHub rejected push because Terraform provider files exceeded GitHub size limits.
-
-## Cause
-
-Accidentally committed:
+Cause:
 
 ```text
 .terraform/
 ```
 
-## Fix
+was committed.
 
-Added:
-
-```gitignore
-.terraform/
-*.tfstate
-*.tfstate.backup
-terraform.tfvars
-```
-
-Removed tracked files and recommitted.
-
----
-
-# Commands Reference
-
-## Terraform
+Fix:
 
 ```bash
-terraform init
-terraform validate
-terraform plan
-terraform apply
-terraform destroy
+git rm -r --cached .terraform
 ```
 
-## AWS CLI
+Commit again:
 
 ```bash
-aws sts get-caller-identity
-aws ec2 describe-instances
-aws s3 ls
-```
-
-## Git
-
-```bash
-git status
 git add .
-git commit -m "message"
+git commit -m "Removed terraform provider files"
 git push origin master
 ```
 
 ---
 
-# Project Progress
+# Phase 14 - Connect to Terraform EC2
 
-- [x] AWS Account Setup
-- [x] IAM User Creation
-- [x] IAM Role Creation
-- [x] Control Server Creation
-- [x] Git Installation
-- [x] AWS CLI Installation
-- [x] Terraform Installation
-- [x] Terraform Configuration
-- [ ] EC2 Creation using Terraform
-- [ ] Ansible Installation
-- [ ] Docker Installation
-- [ ] GitHub Actions Pipeline
-- [ ] Application Deployment
+Get Public IP:
+
+```bash
+aws ec2 describe-instances
+```
+
+Connect:
+
+```bash
+ssh -i ~/.ssh/terraform-webserver-key ubuntu@PUBLIC_IP
+```
+
+Example:
+
+```bash
+ssh -i ~/.ssh/terraform-webserver-key ubuntu@13.206.xxx.xxx
+```
 
 ---
 
-# Final Goal
+# Issue Faced
 
-Code Push
+## SSH Timeout
 
-↓
+Error:
 
-GitHub
+```text
+ssh: connect to host x.x.x.x port 22: Connection timed out
+```
 
-↓
+Cause:
 
-GitHub Actions
+Security Group did not allow SSH.
 
-↓
+Fix:
 
-Terraform Creates Infrastructure
+Open:
 
-↓
+```text
+Port 22
+```
 
-Ansible Configures Server
+in Security Group.
 
-↓
+---
 
-Docker Deploys Application
+# Phase 15 - Ansible Inventory
 
-↓
+Create:
 
-Website Available to Users
+```bash
+mkdir ansible
+cd ansible
+
+nano inventory
+```
+
+Add:
+
+```ini
+[webservers]
+PUBLIC_IP ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/terraform-webserver-key
+```
+
+---
+
+# Phase 16 - Test Ansible Connectivity
+
+```bash
+ansible all -i inventory -m ping
+```
+
+Expected:
+
+```json
+{
+  "ping": "pong"
+}
+```
+
+---
+
+# Current Progress
+
+## Completed
+
+- AWS Account
+- IAM User
+- IAM Role
+- Control Server
+- Git Installation
+- AWS CLI Installation
+- Terraform Installation
+- Ansible Installation
+- GitHub SSH Setup
+- SSH Key Pair Creation
+- Terraform EC2 Creation
+- Security Group Creation
+- SSH Access to EC2
+
+## Pending
+
+- Ansible Inventory
+- Ansible Ping
+- Docker Installation
+- Docker Deployment
+- GitHub Actions
+- Complete CI/CD Pipeline
+
+---
+
+# Next Step
+
+```text
+Terraform
+    ↓
+Ansible Inventory
+    ↓
+Ansible Ping
+    ↓
+Install Docker
+    ↓
+Deploy Nginx Container
+    ↓
+GitHub Actions CI/CD
+```
+
+---
+
+# Lessons Learned
+
+- Always use `.gitignore`
+- Never commit `.terraform`
+- Never commit `terraform.tfstate`
+- Prefer IAM Roles over Access Keys
+- Enable Termination Protection on important EC2 instances
+- Verify Security Groups before troubleshooting SSH
+- Test connectivity with Ansible Ping before running playbooks
