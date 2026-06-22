@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build, Push and Deploy
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  docker:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,3 +26,20 @@ jobs:
       - name: Push Docker Image
         run: |
           docker push moincr77/forge-reality-project:latest
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script: |
+            docker pull moincr77/forge-reality-project:latest
+
+            docker stop website || true
+            docker rm website || true
+
+            docker run -d \
+              --name website \
+              -p 80:80 \
+              moincr77/forge-reality-project:latest
