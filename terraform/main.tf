@@ -18,14 +18,22 @@ resource "aws_key_pair" "webserver_key" {
 
 resource "aws_security_group" "ssh_access" {
   name        = "terraform-ssh-access"
-  description = "Allow SSH access"
+  description = "Allow SSH and HTTP access"
 
   ingress {
     description = "SSH"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]   # For learning only
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "HTTP"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
@@ -50,3 +58,4 @@ resource "aws_instance" "webserver" {
     Name = "terraform-webserver"
   }
 }
+
